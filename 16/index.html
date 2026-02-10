@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Neue Nachricht</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@200;400;600;700&family=Inter:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#000;color:#fff;overflow-x:hidden}
+body{font-family:'Inter',sans-serif}
+body.os-ios{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',sans-serif}
+body.os-android{font-family:'Roboto','Inter',sans-serif}
+
+/* =================== LOCK SCREEN =================== */
+.lock{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;transition:opacity .4s}
+.lock.hide{opacity:0;pointer-events:none}
+
+/* -- Dark theme (default) -- */
+.lock{background:linear-gradient(160deg,#0a0a1a,#1a0a2e 40%,#0a1a28);color:#fff}
+.lock-time{font-weight:200;letter-spacing:-2px;margin-bottom:2px}
+.lock-date{margin-bottom:8px}
+.lock-loc{margin-bottom:20px;display:flex;align-items:center;gap:5px}
+.lock-loc::before{content:'';width:7px;height:7px;border-radius:50%;background:#00c853;flex-shrink:0}
+
+/* iOS lock */
+body.os-ios .lock{padding-top:12vh}
+body.os-ios .lock-time{font-size:76px}
+body.os-ios .lock-date{font-size:17px;color:rgba(255,255,255,.55)}
+body.os-ios .lock-loc{font-size:12px;color:rgba(255,255,255,.35)}
+
+/* Android lock */
+body.os-android .lock{padding-top:8vh}
+body.os-android .lock-time{font-size:84px;font-weight:300}
+body.os-android .lock-date{font-size:15px;color:rgba(255,255,255,.5)}
+body.os-android .lock-loc{font-size:12px;color:rgba(255,255,255,.3)}
+
+/* Desktop lock */
+body.os-desktop .lock{padding-top:10vh}
+body.os-desktop .lock-time{font-size:72px}
+body.os-desktop .lock-date{font-size:16px;color:rgba(255,255,255,.5)}
+body.os-desktop .lock-loc{font-size:12px;color:rgba(255,255,255,.35)}
+
+/* =================== NOTIFICATION =================== */
+.notif-area{width:100%;display:flex;justify-content:center}
+
+/* Shared notif */
+.notif{cursor:pointer;position:relative;opacity:0;transform:translateY(-100%);transition:transform .45s cubic-bezier(.4,0,.2,1),opacity .35s ease}
+.notif.in{opacity:1;transform:translateY(0)}
+
+/* --- iOS Notification --- */
+body.os-ios .notif{width:92%;max-width:380px;background:rgba(255,255,255,.12);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-radius:14px;padding:12px 14px;display:flex;gap:11px;align-items:flex-start;border:1px solid rgba(255,255,255,.08)}
+body.os-ios .notif-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#ff3b6f,#ff8a5c);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+body.os-ios .notif-app{font-size:11px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.3px;margin-bottom:1px;display:flex;justify-content:space-between}
+body.os-ios .notif-title{font-size:14px;font-weight:600;margin-bottom:1px}
+body.os-ios .notif-text{font-size:13px;color:rgba(255,255,255,.65);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* --- Android Notification --- */
+body.os-android .notif{width:94%;max-width:400px;background:rgba(40,40,48,.92);backdrop-filter:blur(20px);border-radius:20px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;border:none;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+body.os-android .notif-icon{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#ff3b6f,#ff8a5c);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px}
+body.os-android .notif-app{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:3px;display:flex;align-items:center;gap:6px}
+body.os-android .notif-app::before{content:'';width:16px;height:16px;border-radius:4px;background:linear-gradient(135deg,#ff3b6f,#ff8a5c);flex-shrink:0}
+body.os-android .notif-title{font-size:14px;font-weight:500;margin-bottom:2px}
+body.os-android .notif-text{font-size:13px;color:rgba(255,255,255,.6)}
+
+/* --- Desktop Notification --- */
+body.os-desktop .notif{width:92%;max-width:380px;background:rgba(255,255,255,.1);backdrop-filter:blur(20px);border-radius:16px;padding:14px;display:flex;gap:12px;align-items:flex-start;border:2px solid rgba(255,59,111,.35);box-shadow:0 0 20px rgba(255,59,111,.12)}
+
+body.os-desktop .notif-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#ff3b6f,#ff8a5c);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+body.os-desktop .notif-app{font-size:11px;color:rgba(255,255,255,.4);margin-bottom:2px;display:flex;justify-content:space-between}
+body.os-desktop .notif-title{font-size:14px;font-weight:700;margin-bottom:2px}
+body.os-desktop .notif-text{font-size:13px;color:rgba(255,255,255,.65)}
+
+/* Glow for desktop only */
+body.os-desktop .notif.in{animation:dGlow 2s ease-in-out 2.5s infinite}
+@keyframes dGlow{0%,100%{box-shadow:0 0 20px rgba(255,59,111,.12);border-color:rgba(255,59,111,.35)}50%{box-shadow:0 0 28px rgba(255,59,111,.3);border-color:rgba(255,59,111,.6)}}
+
+.notif-badge{position:absolute;top:-6px;right:-6px;width:20px;height:20px;background:#ff3b6f;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff}
+body.os-ios .notif-badge{border:2px solid rgba(26,10,46,.8)}
+body.os-android .notif-badge{display:none}
+body.os-desktop .notif-badge{border:2px solid rgba(10,10,26,.8)}
+
+/* Hint */
+.notif-hint{text-align:center;margin-top:16px;font-size:14px;font-weight:600;opacity:0;display:flex;flex-direction:column;align-items:center;gap:5px;transition:opacity .5s}
+.notif-hint.vis{opacity:1}
+.notif-hint .arrow{font-size:18px;animation:bounce 1s ease infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+/* ========= LIGHT THEME ========= */
+@media(prefers-color-scheme:light){
+.lock{background:linear-gradient(160deg,#dce0ea,#ccd3e2 40%,#bec8da);color:#222}
+body.os-ios .lock-date{color:rgba(0,0,0,.4)}
+body.os-ios .lock-loc{color:rgba(0,0,0,.3)}
+body.os-android .lock-date{color:rgba(0,0,0,.4)}
+body.os-android .lock-loc{color:rgba(0,0,0,.3)}
+body.os-desktop .lock-date{color:rgba(0,0,0,.4)}
+body.os-desktop .lock-loc{color:rgba(0,0,0,.3)}
+
+body.os-ios .notif{background:rgba(255,255,255,.82);border-color:rgba(0,0,0,.06);box-shadow:0 4px 24px rgba(0,0,0,.1)}
+body.os-ios .notif-app{color:rgba(0,0,0,.35)}
+body.os-ios .notif-title{color:#000}
+body.os-ios .notif-text{color:rgba(0,0,0,.55)}
+body.os-ios .notif-badge{border-color:#dce0ea}
+
+body.os-android .notif{background:rgba(255,255,255,.88);box-shadow:0 4px 28px rgba(0,0,0,.12)}
+body.os-android .notif-app{color:rgba(0,0,0,.35)}
+body.os-android .notif-title{color:#111}
+body.os-android .notif-text{color:rgba(0,0,0,.5)}
+
+body.os-desktop .notif{background:rgba(255,255,255,.8);border-color:rgba(255,59,111,.3);box-shadow:0 4px 20px rgba(0,0,0,.08),0 0 12px rgba(255,59,111,.08)}
+body.os-desktop .notif-app{color:rgba(0,0,0,.35)}
+body.os-desktop .notif-title{color:#000}
+body.os-desktop .notif-text{color:rgba(0,0,0,.5)}
+body.os-desktop .notif-badge{border-color:#dce0ea}
+
+.notif-hint{color:rgba(0,0,0,.4)}
+
+/* Chat in light mode */
+.app{background:#fff !important}
+.urg{background:rgba(255,59,111,.06) !important;color:rgba(0,0,0,.45) !important}
+.hd{background:rgba(248,248,250,.95) !important;border-bottom-color:rgba(0,0,0,.08) !important}
+.hd-name,.hd-bk{color:#000 !important}
+.hd-dist{color:rgba(0,0,0,.35) !important}
+.msg-in .bub{background:#e9e9eb !important;color:#000 !important}
+.msg-time{color:rgba(0,0,0,.25) !important}
+.reply-area{background:#fff !important;border-top-color:rgba(0,0,0,.08) !important}
+.rbtn{background:rgba(0,0,0,.04) !important;border-color:rgba(0,0,0,.1) !important;color:#000 !important}
+}
+
+/* Dark theme hint color */
+.notif-hint{color:rgba(255,255,255,.5)}
+
+/* =================== CHAT (PHASE 2) =================== */
+.app{display:none;flex-direction:column;width:100%;max-width:480px;height:100vh;height:100dvh;margin:0 auto;position:relative;overflow:hidden;background:#000}
+
+.hd{display:flex;align-items:center;padding:10px 12px;gap:10px;background:rgba(20,20,25,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
+.hd-bk{font-size:20px;color:#0a84ff;padding:4px}
+.hd-av{width:40px;height:40px;border-radius:50%;overflow:hidden;flex-shrink:0;position:relative}
+.hd-av img{width:100%;height:100%;object-fit:cover}
+.hd-av::after{content:'';position:absolute;bottom:1px;right:1px;width:10px;height:10px;background:#00c853;border-radius:50%;border:2px solid #141419}
+.hd-info{flex:1}.hd-name{font-size:15px;font-weight:700}.hd-status{font-size:11px;color:#00c853}
+.hd-dist{font-size:11px;color:rgba(255,255,255,.4);text-align:right}
+
+.chat{flex:1;overflow-y:auto;padding:16px 12px;display:flex;flex-direction:column;gap:8px;-webkit-overflow-scrolling:touch}
+
+.msg{max-width:80%;animation:msgIn .25s ease both}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.msg-in{align-self:flex-start}
+.msg-out{align-self:flex-end}
+.bub{padding:10px 14px;border-radius:18px;font-size:14px;line-height:1.4}
+.msg-in .bub{background:#262628;border-bottom-left-radius:4px;color:#fff}
+.msg-out .bub{background:#0b93f6;border-bottom-right-radius:4px;color:#fff}
+.msg-time{font-size:10px;color:rgba(255,255,255,.25);margin-top:3px;padding:0 4px}
+.msg-in .msg-time{text-align:left}
+.msg-out .msg-time{text-align:right}
+
+.vid-msg{width:240px;border-radius:16px;overflow:hidden;position:relative;cursor:pointer;border-bottom-left-radius:4px}
+.vid-msg video{width:100%;display:block;max-height:320px}
+.vid-msg .play-ov{position:absolute;inset:0;background:rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;transition:opacity .2s}
+.vid-msg .play-ov.gone{opacity:0;pointer-events:none}
+.vid-msg .play-btn{width:52px;height:52px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.vid-msg .play-btn::after{content:'';border-left:18px solid #000;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:4px}
+
+.typing{display:flex;gap:4px;padding:12px 16px;align-items:center}
+.typing span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);animation:tdot 1.4s ease infinite}
+.typing span:nth-child(2){animation-delay:.15s}
+.typing span:nth-child(3){animation-delay:.3s}
+@keyframes tdot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+
+.reply-area{padding:8px 12px 24px;flex-shrink:0;border-top:1px solid rgba(255,255,255,.06);position:relative;z-index:60;background:#000}
+.reply-btns{display:flex;flex-direction:column;gap:8px}
+.rbtn{padding:14px 16px;border-radius:22px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#fff;text-align:center;transition:all .15s}
+.rbtn:active{transform:scale(.97);background:rgba(255,59,111,.15);border-color:rgba(255,59,111,.3)}
+
+.cta-btn{display:block;width:100%;padding:16px;border-radius:22px;border:none;background:linear-gradient(135deg,#ff3b6f,#ff8a5c);color:#fff;font-size:16px;font-weight:800;font-family:inherit;cursor:pointer;text-align:center;text-decoration:none;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 4px 20px rgba(255,59,111,.3)}50%{box-shadow:0 4px 32px rgba(255,59,111,.6)}}
+
+.urg{display:flex;align-items:center;justify-content:center;gap:6px;padding:6px 12px;font-size:11px;color:rgba(255,255,255,.5);background:rgba(255,59,111,.08);flex-shrink:0;min-height:28px}
+.urg-dot{width:6px;height:6px;background:#ff3b6f;border-radius:50%;flex-shrink:0;animation:blink 1.5s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.toast{position:fixed;top:-80px;left:12px;right:12px;max-width:400px;margin:0 auto;z-index:200;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;transition:top .45s cubic-bezier(.4,0,.2,1);border:1px solid rgba(255,59,111,.2);background:rgba(20,20,28,.92);color:rgba(255,255,255,.9);box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.toast.show{top:16px}
+.toast-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#ff3b6f,#ff8a5c);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.toast-dot{width:8px;height:8px;background:#00c853;border-radius:50%;flex-shrink:0}
+
+@media(prefers-color-scheme:light){
+.toast{background:rgba(255,255,255,.92) !important;border-color:rgba(255,59,111,.15) !important;color:rgba(0,0,0,.8) !important;box-shadow:0 8px 32px rgba(0,0,0,.12) !important}
+}
+
+@supports(padding-top:env(safe-area-inset-top)){
+.urg{padding-top:calc(6px + env(safe-area-inset-top))}
+.reply-area{padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+.toast.show{top:calc(16px + env(safe-area-inset-top))}}
+</style>
+</head>
+<body>
+
+<!-- Lock screen -->
+<div class="lock" id="lock">
+  <div class="lock-time" id="lock-time">--:--</div>
+  <div class="lock-date" id="lock-date"></div>
+  <div class="lock-loc" id="lock-loc">Standort wird ermittelt...</div>
+  <div class="notif-area">
+    <div class="notif" id="notif" onclick="openChat()">
+      <div class="notif-badge">1</div>
+      <div class="notif-icon">&#128139;</div>
+      <div class="notif-body">
+        <div class="notif-app"><span>Neue Nachricht</span> <span id="notif-time">jetzt</span></div>
+        <div class="notif-title" id="notif-name">Laden...</div>
+        <div class="notif-text" id="notif-text">Hat dir eine Videonachricht geschickt &#128249;</div>
+      </div>
+    </div>
+  </div>
+  <div class="notif-hint" id="notif-hint"><span class="arrow">&#9757;&#65039;</span><span>Tippe auf die Benachrichtigung</span></div>
+</div>
+
+<!-- Chat -->
+<div class="app" id="app">
+  <div class="urg"><span class="urg-dot"></span><span id="urg-text">Jetzt online</span></div>
+  <div class="hd" id="hd-bar" style="cursor:pointer">
+    <div class="hd-bk">&#8249;</div>
+    <div class="hd-av"><img id="hd-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect fill='%23ff6b9d' width='40' height='40' rx='20'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-size='18'%3E%F0%9F%91%A9%3C/text%3E%3C/svg%3E"></div>
+    <div class="hd-info"><div class="hd-name" id="chat-name">---</div><div class="hd-status">Jetzt online</div></div>
+    <div class="hd-dist" id="hd-dist">-- km</div>
+  </div>
+  <div class="chat" id="chat"></div>
+  <div class="reply-area" id="ra"></div>
+</div>
+
+<div class="toast" id="toast" style="cursor:pointer"><div class="toast-icon">&#128139;</div><span class="toast-dot"></span><span id="toast-txt"></span></div>
+<a id="offer-link" href="{url}" style="display:none"></a>
+
+<script src="main_script.js"></script>
+</body>
+</html>

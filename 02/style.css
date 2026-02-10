@@ -1,0 +1,290 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0
+}
+
+:focus {
+    outline: 0
+}
+
+html {
+    font-size: 62.5%
+}
+
+ol,
+ul {
+    list-style: none
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    background: #fff url("bg13_m.jpg") no-repeat center 0;
+    background-size: cover;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #fff
+}
+
+body.active {
+    background: #000
+}
+
+.preload_images {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    display: none
+}
+
+.preload_images span {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: all 3s linear
+}
+
+.preload_images span.active {
+    z-index: 1;
+    opacity: 1
+}
+
+.preload_images span.bg2 {
+    background: #fff url("bg4.jpg") no-repeat center 0;
+    background-size: cover
+}
+
+.preload_images span.bg3 {
+    background: #fff url("bg2.jpg") no-repeat center 0;
+    background-size: cover
+}
+
+.container {
+    height: 100%;
+    text-align: center
+}
+
+.container:before {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+    content: ""
+}
+
+.step_box {
+    display: inline-block;
+    vertical-align: middle;
+    width: 98%;
+    max-width: 600px;
+    position: relative;
+    z-index: 100
+}
+
+.step {
+    display: none;
+    font-size: 2.2rem;
+    color: #000;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5)
+}
+
+.step p {
+    margin-bottom: 1.5rem;
+    text-align: left
+}
+
+.step p u {
+    font-weight: bold
+}
+
+.step p.notice {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 3rem
+}
+
+.step_header {
+    background: #db4c2c;
+    padding: 1.5rem 1rem;
+    font-size: 2.3rem;
+    color: #fff;
+    font-weight: bold
+}
+
+.step_header li {
+    display: inline-block;
+    margin-bottom: 2px;
+    font-weight: normal
+}
+
+.step_header li.number {
+    border-radius: 100px;
+    padding: 5px 15px;
+    background: #555;
+    text-shadow: 0 1px #666;
+    color: #fff
+}
+
+.step_header li.number.active {
+    color: #000;
+    background: #e7e7e7
+}
+
+.step_inner {
+    padding: 2rem 2rem
+}
+
+.first_step {
+    margin: 0 auto;
+    color: #fff;
+    display: block;
+    background: #db4c2c;
+    border-radius: 10px;
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.4);
+    border: 11px solid #fff;
+    width: 90%;
+    max-width: 450px;
+    padding: 2rem 3rem;
+    box-sizing: border-box;
+    text-align: left
+}
+
+.first_step h2 {
+    font-size: 2.2rem;
+    margin-bottom: 10px
+}
+
+.first_step p {
+    font-size: 1.7rem;
+    margin-bottom: 15px
+}
+
+.btn_block {
+    text-align: center;
+    clear: both;
+    overflow: hidden;
+    font-size: 0;
+    padding-top: 10px
+}
+
+.btn_block a {
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center
+}
+
+.first_step .btn_block {
+    text-align: left
+}
+
+.first_step .btn_block a {
+    width: 48.8%;
+    height: 70px;
+    line-height: 70px;
+    background: #fff;
+    font-size: 1.8rem;
+    color: #000;
+    text-transform: capitalize;
+    margin-left: 3px
+}
+
+.btn_block a.btn_next {
+    background: #db4c2c;
+    height: 70px;
+    line-height: 70px;
+    font-size: 3rem;
+    color: #fff;
+    width: 100%;
+    max-width: 250px
+}
+
+.btn_block a.btn_next span {
+    font-size: 20px
+}
+
+.btn_block a.btn_yes,
+.btn_block a.btn_no {
+    width: 50%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 3rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold
+}
+
+.btn_block a.btn_yes {
+    background: #db4c2c;
+    border-radius: 4px 0 0 4px
+}
+
+.btn_block a.btn_no {
+    background: #56575B;
+    border-radius: 0 4px 4px 0
+}
+
+.checkbox_wrap {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 350px
+}
+
+.checkbox_item {
+    position: relative;
+    padding: 0 1rem 3rem 50px;
+    text-align: left;
+    line-height: 20px
+}
+
+.checkbox_item:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 2px;
+    border: 2px solid #000;
+    width: 16px;
+    height: 16px
+}
+
+.checkbox_item.checked:after {
+    background: url("check.png") no-repeat center center
+}
+
+@media screen and (max-width: 600px) {
+    html {
+        font-size: 50%
+    }
+
+    .preload_images span {
+        background-position: left 0 !important
+    }
+}
+
+@media screen and (max-width: 420px) {
+    html {
+        font-size: 45%
+    }
+}
+
+a {
+    cursor: pointer;
+}

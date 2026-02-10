@@ -1,0 +1,462 @@
+   html {
+       margin: 0px;
+       min-height: 100%;
+       font-size: 24px;
+       box-sizing: border-box;
+   }
+
+   body {
+       background: url("bg13-1.jpg") center top / cover no-repeat;
+       font-family: Arial, Helvetica, sans-serif;
+       margin: 0px;
+       padding: 0px;
+       font-size: 24px;
+       color: rgb(88, 88, 88);
+       min-height: 100%;
+       width: 100%;
+       height: 100%;
+   }
+
+   * {
+       box-sizing: border-box;
+       margin: 0px;
+       padding: 0px;
+   }
+
+   #slBg {
+       position: fixed;
+       z-index: -1;
+       top: 0px;
+       left: 0px;
+       width: 100%;
+       height: 100%;
+   }
+
+   #slBg>div {
+       width: 100%;
+       background-position: center center;
+       background-repeat: no-repeat;
+       background-size: cover;
+       position: absolute;
+       inset: 0px;
+       overflow: hidden;
+       border: none;
+       padding: 0px;
+       margin: 0px;
+       opacity: 0;
+       display: none;
+       z-index: 0;
+   }
+
+   #qB,
+   #verify,
+   #final {
+       padding: 10px;
+       max-width: 600px;
+       width: 97%;
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       margin: 0.5em auto;
+   }
+
+   h1 {
+       font-size: 20px;
+       color: rgb(100, 100, 160);
+   }
+
+   #qB>div,
+   #verify,
+   #final {
+       display: block;
+       transition: opacity 0.8s ease-out 0s;
+       opacity: 0;
+       height: 0px;
+       overflow: hidden;
+       background: rgb(225, 236, 249);
+       box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 6px;
+       padding: 10px;
+       margin: 0.5em auto;
+       width: 97%;
+       text-align: center;
+   }
+
+   #qB> :first-child,
+   #qB .show {
+       opacity: 1;
+       height: auto;
+   }
+
+   #qB p {
+       line-height: 140%;
+       padding: 8px 20px;
+       font-size: 24px;
+       margin-bottom: 15px;
+       text-align: left;
+   }
+
+   #qB h1,
+   #qB h3,
+   #verify h1,
+   #final h1 {
+       font-size: 140%;
+       text-align: center;
+       margin-top: 15px;
+   }
+
+   #qB .txt {
+       color: rgb(100, 100, 160);
+       margin-bottom: 20px;
+       text-align: center;
+       line-height: 45px;
+       font-size: 37px;
+   }
+
+   #qB h2 {
+       font-size: 100%;
+       font-style: italic;
+       color: rgb(100, 100, 160);
+       font-weight: 400;
+       margin-left: 1em;
+       margin-top: 10px;
+   }
+
+   #qB>div div,
+   #final a {
+       width: 60%;
+       margin-top: 10px;
+       max-width: 200px;
+       display: inline-block;
+       border-radius: 4px;
+       cursor: pointer;
+       font-weight: normal;
+       text-decoration: none;
+       z-index: 10;
+       text-align: center;
+       font-size: 24px;
+       line-height: 50px;
+       color: rgb(255, 255, 255);
+       border: 1px solid rgb(100, 100, 160);
+       background: linear-gradient(rgb(100, 100, 160), rgb(127, 127, 189)) rgb(54, 133, 40);
+   }
+
+   #qB>div div,
+   #final a {
+       -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+   }
+
+   #qB>div div:hover,
+   #final a:hover {
+       background-image: linear-gradient(rgb(127, 127, 189), rgb(100, 100, 160));
+       text-shadow: rgba(0, 0, 0, 0.4) 0px 0px 7px;
+   }
+
+   #qB>div div+div {
+       background: rgb(113, 113, 113);
+       margin-left: 10px;
+       color: rgb(192, 192, 192);
+       border: 1px solid rgb(82, 82, 82);
+   }
+
+   #qB>div div+div:hover {
+       background: rgb(59, 59, 59);
+       color: rgb(255, 255, 255);
+       border: 1px solid rgb(72, 72, 72);
+   }
+
+   #qB h3 {
+       display: block;
+       width: 100%;
+       font-size: 18px;
+       color: rgb(100, 100, 160);
+       font-weight: bold;
+       padding-top: 12px;
+       padding-bottom: 12px;
+       margin-bottom: 1em;
+       text-align: center;
+       line-height: 34px;
+       border-bottom: 1px solid rgba(0, 51, 153, 0.2);
+   }
+
+   #qB h3 span {
+       font-size: 16px;
+       color: rgb(100, 100, 160);
+       font-weight: bold;
+       padding: 8px 18px;
+       background: rgb(217, 224, 240);
+   }
+
+   #qB h3 span:first-child {
+       margin-left: 10px;
+   }
+
+   #qB h3 .active {
+       background: rgb(100, 100, 160);
+       color: rgb(255, 255, 255);
+   }
+
+   #qB ul {
+       list-style: none;
+       margin: 0.5em 0px 1.5em 1em;
+       text-align: left;
+   }
+
+   #qB ul li {
+       cursor: pointer;
+   }
+
+   #qB ul li:hover span {
+       color: rgb(100, 100, 160);
+       font-weight: bold;
+   }
+
+   #qB ul li span {
+       position: relative;
+       line-height: 120%;
+       margin: 1em auto;
+       color: rgb(98, 98, 98);
+   }
+
+   #qB ul li span::before {
+       content: "";
+       width: 0px;
+       height: 0px;
+       padding: 0.6rem;
+       border: 0.2rem solid rgb(98, 98, 98);
+       top: 0px;
+       left: 0px;
+       display: inline-block;
+       margin: 0.5rem;
+       vertical-align: middle;
+       position: relative;
+   }
+
+   #qB ul li:hover span::before {
+       border-color: rgb(100, 100, 160);
+   }
+
+   #qB ul li .box-fill::before {
+       background: rgb(100, 100, 160);
+       box-shadow: rgb(225, 236, 249) 0px 0px 0px 0.2em inset;
+       border-color: rgb(100, 100, 160);
+   }
+
+   #qB ul li .box-fill {
+       color: rgb(100, 100, 160);
+       font-weight: bold;
+   }
+
+   #verify,
+   #final {
+       text-align: center;
+       opacity: 1;
+       height: auto;
+   }
+
+   #verify p {
+       text-align: center;
+       margin: 10px;
+       line-height: 150%;
+       font-weight: 600;
+       font-size: 18px;
+   }
+
+   .progress {
+       display: inline-block;
+       height: 1.6em;
+       border: 1px solid rgb(100, 100, 160);
+       border-radius: 15px;
+       width: 90%;
+   }
+
+   .progress>#theBar {
+       background-image: linear-gradient(135deg, rgb(100, 100, 160) 25%, transparent 25%, transparent 50%, rgb(100, 100, 160) 50%, rgb(100, 100, 160) 75%, transparent 75%, transparent);
+       background-size: 40px 40px;
+       height: 100%;
+       background-color: rgb(100, 100, 160);
+       width: 33%;
+       box-shadow: rgba(0, 0, 0, 0.15) 0px -1px 0px inset;
+       transition: width 300ms ease 0s;
+       animation: 2s linear 0s infinite normal none running progress-bar-stripes;
+       border-radius: 15px 0px 0px 15px;
+   }
+
+   @-webkit-keyframes progress-bar-stripes {
+       0% {
+           background-position: 40px 0px;
+       }
+
+       100% {
+           background-position: 0px 0px;
+       }
+   }
+
+   @keyframes progress-bar-stripes {
+       0% {
+           background-position: 40px 0px;
+       }
+
+       100% {
+           background-position: 0px 0px;
+       }
+   }
+
+   hr {
+       color: rgb(168, 167, 167);
+       opacity: 0.25;
+       width: 95%;
+       display: block;
+       margin: 0.5em auto;
+   }
+
+   #final h1 {
+       display: block;
+       color: rgb(100, 100, 160);
+       font-size: 34px;
+   }
+
+   #final h2 {
+       display: block;
+       font-size: 18px;
+       font-weight: 400;
+       margin: 0.8em 0px;
+       text-align: left;
+       padding: 0px 20px;
+   }
+
+   #res>p {
+       display: none;
+   }
+
+   #res> :first-child {
+       display: block;
+   }
+
+   #verify,
+   #final {
+       display: none;
+       width: 95%;
+   }
+
+   @media screen and (device-aspect-ratio: 40 / 71),
+   screen and (max-device-width: 400px) {
+
+       #qB h1,
+       #verify h1,
+       #final h1 {
+           line-height: 1;
+           padding: 10px;
+       }
+
+       #qB>div:first-child {
+           margin-top: -10px;
+       }
+
+       #qB .txt {
+           font-size: 1.3em;
+           line-height: 1.1em;
+           padding-top: 20px;
+           margin-bottom: 5px;
+       }
+
+       #qB>div:first-child p {
+           line-height: 120%;
+           padding: 5px;
+           font-size: 0.8em;
+           margin-bottom: 5px;
+       }
+
+       #qB h3 span {
+           font-size: 1.3em;
+           padding: 10px;
+       }
+
+       #qB h3 .active {
+           border-radius: 50%;
+           padding: 8px 13px;
+       }
+   }
+
+   @media screen and (max-device-width: 500px) {
+
+       #qB h1,
+       #verify h1,
+       #final h1 {
+           padding: 10px;
+       }
+   }
+
+   @media only screen and (max-width: 500px) and (min-width: 361px) {
+       .entrylogo {
+           max-width: 320px;
+       }
+   }
+
+   @media only screen and (max-width: 360px) {
+       .entrylogo {
+           max-width: 300px;
+       }
+   }
+
+   .checkbox_wrap {
+       margin: 0px auto;
+       width: 100%;
+       display: flex;
+       -webkit-box-pack: center;
+       justify-content: center;
+       flex-wrap: wrap;
+       max-width: 600px;
+   }
+
+   .option {
+       width: 28%;
+       position: relative;
+       cursor: pointer;
+       text-align: left;
+       margin: 0.5rem 2%;
+   }
+
+   .option img {
+       display: block;
+       width: 100%;
+       border: 3px solid rgb(0, 0, 0);
+       border-radius: 8px;
+   }
+
+   .option-title {
+       display: block;
+       text-align: center;
+       font-size: 1rem;
+       padding-top: 5px;
+   }
+
+   .option.checked img {
+       border: 8px solid rgb(100, 100, 160);
+   }
+
+   .option.checked .option-title {
+       color: rgb(100, 100, 160);
+   }
+
+   #qB>div {
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+   }
+
+   @media screen and (max-width: 800px) {
+       #slBg>div:nth-child(5) {
+           background-position: left center;
+       }
+
+       #qB>div div+div {
+           margin-left: 0px;
+       }
+
+       .option-title {
+           font-size: 0.6rem;
+           font-weight: 600;
+       }
+   }

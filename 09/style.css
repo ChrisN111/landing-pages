@@ -1,0 +1,930 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@media screen and (min-width: 280px) {
+    html {
+        font-size: 50%;
+    }
+}
+
+@media screen and (min-width: 320px) {
+    html {
+        font-size: 75%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    html {
+        font-size: 90%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    html {
+        font-size: 90%;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    html {
+        font-size: 100%;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+
+    /* Styles for medium to large desktops */
+    html {
+        font-size: 130%;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    html {
+        font-size: 130%;
+    }
+}
+
+body {
+    background-image: url("backgroundImage.png");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-size: cover;
+    font-family: Raleway;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 992px) {
+    body {
+        background-image: url("backgroundImageMobile.png");
+    }
+}
+
+.landingPage-container {
+    background: linear-gradient(126deg, #cc7530 22.66%, rgba(0, 0, 0, 0) 127.77%);
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+}
+
+@media (max-width: 992px) {
+    .landingPage-container {
+        background: linear-gradient(126deg, #cc7530 22.66%, rgba(0, 0, 0, 0) 127.77%);
+    }
+}
+
+.landingPage-container .landingPage {
+    height: 100%;
+    width: 100%;
+}
+
+.landingPage-container .landingPage-top {
+    height: 100dvh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+@media (max-width: 992px) {
+    .landingPage-container .landingPage-top {
+        height: 57%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .landingPage-container .landingPage-top {
+        height: 39%;
+    }
+}
+
+@media (max-width: 321px) {
+    .landingPage-container .landingPage-top {
+        height: 65%;
+    }
+}
+
+.landingPage-container .landingPage-top-left {
+    position: relative;
+    width: 50vw;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-items: space-between;
+}
+
+.landingPage-container .landingPage-top-left .imageLeftContainer {
+    height: 100%;
+    width: 100%;
+}
+
+@media (max-width: 992px) {
+    .landingPage-container .landingPage-top-left {
+        z-index: 10;
+        width: 100%;
+    }
+}
+
+.landingPage-container .landingPage-top-left-content {
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    position: relative;
+    align-items: flex-end;
+    padding-left: 6%;
+}
+
+@media (max-width: 992px) {
+    .landingPage-container .landingPage-top-left-content {
+        height: 100%;
+        align-items: flex-end;
+    }
+}
+
+@media (max-width: 992px) {
+    .landingPage-container .landingPage-top-left-content {
+        padding-left: 0%;
+    }
+}
+
+.landingPage-container .landingPage-top-left-content-important {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+@media (min-width:1400px) {
+    .landingPage-container .landingPage-top-left-content-important {
+        row-gap: 30px;
+    }
+}
+
+.landingPage-container .landingPage-top-left-content-important-title p {
+    color: #fff;
+}
+
+.landingPage-container .landingPage-top-left-content-important-paragraph p {
+    width: 65%;
+    text-transform: uppercase;
+    color: white;
+}
+
+.landingPage-container .landingPage-top-left-content-important-paragraph p span {
+    color: #f18f01;
+}
+
+@media (max-width:991.98px) {
+    .landingPage-container .landingPage-top-left-content-important-paragraph p {
+        font-size: 20px;
+        width: 70%;
+    }
+}
+
+@media (min-width:1400px) {
+    .landingPage-container .landingPage-top-left-content-important-paragraph p {
+        font-size: 62px;
+    }
+}
+
+.landingPage-container .landingPage-top-left-content-important-button {
+    color: white;
+    padding: 16px 24px;
+    font-size: 20px;
+    border-radius: 25px;
+    width: 30%;
+    text-align: center;
+}
+
+.landingPage-container .landingPage-top-left-olderThan {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    flex-direction: column;
+    row-gap: 1.7rem;
+    margin-bottom: 10%;
+    width: 100%;
+    padding-left: 3rem;
+}
+
+@media screen and (max-width: 982px) {
+    .landingPage-container .landingPage-top-left-olderThan {
+        font-size: 1.2rem;
+        padding: 1.8rem;
+        row-gap: 1.2rem;
+        margin-bottom: 0%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .landingPage-container .landingPage-top-left-olderThan {
+        row-gap: 1rem;
+    }
+}
+
+@media only screen and (width: 375px) and (max-height: 667px) {
+    .landingPage-container .landingPage-top-left-olderThan {
+        row-gap: 0.5rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .landingPage-container .landingPage-top-left-olderThan {
+        margin-bottom: 0%;
+    }
+}
+
+@media (max-width: 321px) {
+    .landingPage-container .landingPage-top-left-olderThan {
+        row-gap: 1rem;
+    }
+}
+
+.landingPage-container .landingPage-top-left-olderThan-descriptionFirst {
+    color: white;
+    width: 80%;
+    text-align: left;
+    line-height: 1.5;
+}
+
+.landingPage-container .landingPage-top-left-olderThan-descriptionFirst #actualQuestion {
+    font-family: Raleway;
+    font-weight: 400;
+    font-size: 1.1rem;
+}
+
+@media screen and (max-width: 992px) {
+    .landingPage-container .landingPage-top-left-olderThan-descriptionFirst #actualQuestion {
+        font-size: 1.4rem;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .landingPage-container .landingPage-top-left-olderThan-descriptionFirst #actualQuestion {
+        font-size: 1.7rem;
+    }
+}
+
+@media only screen and (width: 375px) and (max-height: 667px) {
+    .landingPage-container .landingPage-top-left-olderThan-descriptionFirst #actualQuestion {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 321px) {
+    .landingPage-container .landingPage-top-left-olderThan-descriptionFirst #actualQuestion {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+}
+
+@media screen and (max-width: 281px) {
+    .landingPage-container .landingPage-top-left-olderThan-descriptionFirst #actualQuestion {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 982px) {
+    .landingPage-container .landingPage-top-left-olderThan-descriptionFirst {
+        width: 100%;
+        font-size: 1.4rem;
+    }
+}
+
+.landingPage-container .landingPage-top-left-olderThan-descriptionFirst-thankYou {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+@media screen and (max-width: 992px) {
+    .landingPage-container .landingPage-top-left-olderThan-descriptionFirst-thankYou {
+        font-size: 1.4rem;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .landingPage-container .landingPage-top-left-olderThan-descriptionFirst-thankYou {
+        font-size: 1.7rem;
+        row-gap: 12px;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .landingPage-container .landingPage-top-left-olderThan-descriptionFirst-thankYou {
+        row-gap: 10px;
+    }
+}
+
+@media only screen and (width: 375px) and (max-height: 667px) {
+    .landingPage-container .landingPage-top-left-olderThan-descriptionFirst-thankYou {
+        row-gap: 6px;
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    .landingPage-container .landingPage-top-left-olderThan-descriptionFirst-thankYou {
+        font-size: 1.1rem;
+        font-weight: 600;
+        row-gap: 10px;
+    }
+}
+
+@media screen and (max-width: 281px) {
+    .landingPage-container .landingPage-top-left-olderThan-descriptionFirst-thankYou {
+        font-size: 12px;
+    }
+}
+
+.landingPage-container .landingPage-top-left-olderThan-title {
+    font-family: Oswald;
+    font-weight: 700;
+    color: #fff;
+    font-size: 3.9rem;
+    text-transform: uppercase;
+    background: transparent;
+    width: 80%;
+    width: auto;
+    line-height: 1.3;
+    font-style: normal;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 982px) {
+    .landingPage-container .landingPage-top-left-olderThan-title {
+        width: 100%;
+        font-size: 3rem;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .landingPage-container .landingPage-top-left-olderThan-title {
+        font-size: 3.8rem;
+    }
+}
+
+@media only screen and (width: 375px) and (max-height: 667px) {
+    .landingPage-container .landingPage-top-left-olderThan-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .landingPage-container .landingPage-top-left-olderThan-title {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 321px) {
+    .landingPage-container .landingPage-top-left-olderThan-title {
+        font-size: 1.8rem !important;
+    }
+}
+
+.landingPage-container .landingPage-top-left-olderThan-checkBoxList {
+    width: 100%;
+    display: flex;
+    margin-top: 8px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 1.5rem;
+    -moz-column-gap: 20px;
+    column-gap: 20px;
+}
+
+@media (max-width:991.98px) {
+    .landingPage-container .landingPage-top-left-olderThan-checkBoxList {
+        font-size: 1.3rem;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .landingPage-container .landingPage-top-left-olderThan-checkBoxList {
+        font-size: 1.7rem;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    .landingPage-container .landingPage-top-left-olderThan-checkBoxList {
+        row-gap: 0.7rem;
+    }
+}
+
+@media only screen and (width: 375px) and (max-height: 667px) {
+    .landingPage-container .landingPage-top-left-olderThan-checkBoxList {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    .landingPage-container .landingPage-top-left-olderThan-checkBoxList {
+        font-size: 1.1rem;
+        row-gap: 0.8rem;
+        font-weight: 600;
+    }
+}
+
+@media (min-width:1400px) {
+    .landingPage-container .landingPage-top-left-olderThan-checkBoxList {
+        width: 70%;
+    }
+}
+
+.landingPage-container .landingPage-top-left-olderThan-checkBoxList p {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+@media (max-width:991.98px) {
+    .landingPage-container .landingPage-top-left-olderThan-checkBoxList p {
+        font-size: 20px;
+    }
+}
+
+@media (min-width:1400px) {
+    .landingPage-container .landingPage-top-left-olderThan-checkBoxList p {
+        font-size: 24px;
+    }
+}
+
+.landingPage-container .landingPage-top-left-olderThan-checkBoxList div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    -moz-column-gap: 14px;
+    column-gap: 14px;
+    cursor: pointer;
+}
+
+@media (min-width:1400px) {
+    .landingPage-container .landingPage-top-left-olderThan-checkBoxList div {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: row;
+    }
+}
+
+@media (max-width:991.98px) {
+    .landingPage-container .landingPage-top-left-olderThan-checkBoxList div {
+        -moz-column-gap: 10px;
+        column-gap: 10px;
+    }
+}
+
+.landingPage-container .landingPage-top-left-olderThan-checkBoxList div input {
+    margin-top: 3px;
+    display: none;
+}
+
+.landingPage-container .landingPage-top-left-olderThan-checkBoxList div .customCheckboxQuestion {
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.landingPage-container .landingPage-top-left-olderThan-checkBoxList div .customCheckboxQuestion img {
+    scale: 0;
+    opacity: 0;
+    height: 1rem;
+    width: 1.25rem;
+}
+
+@media (max-width:991.98px) {
+    .landingPage-container .landingPage-top-left-olderThan-checkBoxList div .customCheckboxQuestion img {
+        height: 13px;
+        width: 13px;
+    }
+}
+
+.landingPage-container .landingPage-top-left-olderThan-checkBoxList div .customCheckboxQuestion_input:checked+.customCheckboxQuestion img {
+    opacity: 1;
+    scale: 0.8;
+    color: #f7c5c5;
+    color: black;
+}
+
+.landingPage-container .landingPage-top-left-olderThan-checkBoxList div label {
+    color: white;
+    position: relative;
+    top: 0;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 281px) {
+    .landingPage-container .landingPage-top-left-olderThan-checkBoxList div label {
+        font-size: 12px;
+    }
+}
+
+.landingPage-container .landingPage-top-left-olderThan-choose {
+    display: none;
+    width: 80%;
+    text-align: left;
+    color: white;
+    font-size: 1rem;
+}
+
+@media (max-width:991.98px) {
+    .landingPage-container .landingPage-top-left-olderThan-choose {
+        font-size: 16px !important;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .landingPage-container .landingPage-top-left-olderThan-choose {
+        font-size: 1.4rem !important;
+    }
+}
+
+@media (max-width:560px) {
+    .landingPage-container .landingPage-top-left-olderThan-choose {
+        font-size: 14px !important;
+    }
+}
+
+@media (max-width:380px) {
+    .landingPage-container .landingPage-top-left-olderThan-choose {
+        font-size: 12px !important;
+    }
+}
+
+.landingPage-container .landingPage-top-left-olderThan-buttons {
+    align-self: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 1rem;
+    color: white;
+    width: 58%;
+}
+
+@media screen and (max-width: 767px) {
+    .landingPage-container .landingPage-top-left-olderThan-buttons {
+        width: 88%;
+    }
+}
+
+.landingPage-container .landingPage-top-left-olderThan-buttons-left {
+    text-align: center;
+    border-radius: 0.25rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: #fff;
+    cursor: pointer;
+    width: 50%;
+    cursor: pointer;
+}
+
+.landingPage-container .landingPage-top-left-olderThan-buttons-left #yesButton {
+    font-family: Oswald;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #000;
+    border: 2px solid #fff;
+    background: #fff;
+    display: block;
+    padding: 0.8rem 0rem;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    gap: 1rem;
+}
+
+@media (max-width: 1024px) {
+    .landingPage-container .landingPage-top-left-olderThan-buttons-left #yesButton {
+        width: 100%;
+    }
+}
+
+@media (max-width: 992px) {
+    .landingPage-container .landingPage-top-left-olderThan-buttons-left #yesButton {
+        color: #fff;
+        border: 2px solid #fff;
+        background: none;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .landingPage-container .landingPage-top-left-olderThan-buttons-left #yesButton {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 321px) {
+    .landingPage-container .landingPage-top-left-olderThan-buttons-left #yesButton {
+        padding: 0.5rem 0rem;
+        font-size: 1.3rem;
+    }
+}
+
+.landingPage-container .landingPage-top-left-olderThan-buttons-right {
+    align-items: center;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-size: 1.1rem;
+    width: 48%;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid hsl(0, 0%, 100%);
+    padding: 0.8rem 0rem;
+    font-size: 1.2rem;
+    color: #000;
+    cursor: pointer;
+    display: none;
+    font-family: Oswald;
+}
+
+@media (max-width: 321px) {
+    .landingPage-container .landingPage-top-left-olderThan-buttons-right {
+        padding: 0.5rem 0rem;
+        font-size: 1.3rem;
+    }
+}
+
+.landingPage-container .landingPage-top-left-olderThan-buttons-right #noButton {
+    text-align: center;
+    color: white;
+}
+
+@media (max-width: 992px) {
+    .landingPage-container .landingPage-top-left-olderThan-buttons-right #noButton {
+        color: #000;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .landingPage-container .landingPage-top-left-olderThan-buttons-right #noButton {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .landingPage-container .landingPage-top-left-olderThan-buttons-right {
+        color: #000;
+        border: 2px solid #fff;
+        background: #fff;
+    }
+}
+
+.landingPage-container .landingPage-top-left-olderThan-buttons-continue {
+    align-items: center;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-size: 1.2rem;
+    padding: 0.8rem 0rem;
+    width: 45%;
+    color: #000;
+    cursor: pointer;
+    background-color: #fff;
+    font-family: Oswald;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    display: none;
+}
+
+@media (max-width: 992px) {
+    .landingPage-container .landingPage-top-left-olderThan-buttons-continue {
+        color: #000;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .landingPage-container .landingPage-top-left-olderThan-buttons-continue {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 321px) {
+    .landingPage-container .landingPage-top-left-olderThan-buttons-continue {
+        padding: 0.5rem 0rem;
+        font-size: 1.3rem;
+    }
+}
+
+.landingPage-container .landingPage-top-left-olderThan-buttons-continue img {
+    display: block;
+    -o-object-fit: contain;
+    object-fit: contain;
+    height: auto;
+    display: block;
+    width: 100%;
+}
+
+.landingPage-container .landingPage .rightImageContainer {
+    height: 100%;
+    width: 50vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 992px) {
+    .landingPage-container .landingPage .rightImageContainer {
+        display: none;
+    }
+}
+
+.landingPage-container .landingPage .rightImageContainer-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.landingPage-container .landingPage .rightImageContainer-image .cubeWrapper {
+    position: relative;
+    -o-object-fit: contain;
+    object-fit: contain;
+    position: absolute;
+    height: 25vh;
+    bottom: 15%;
+    left: 30%;
+    z-index: 999;
+    display: flex;
+    text-align: center;
+}
+
+@media (min-width: 1920px) {
+    .landingPage-container .landingPage .rightImageContainer-image .cubeWrapper {
+        left: 14%;
+    }
+}
+
+@media (width: 1920px) {
+    .landingPage-container .landingPage .rightImageContainer-image .cubeWrapper {
+        left: 24%;
+    }
+}
+
+@media screen and (width: 1920px) and (height: 1280px) {
+    .landingPage-container .landingPage .rightImageContainer-image .cubeWrapper {
+        left: 10%;
+    }
+}
+
+@media screen and (min-width: 1401px) and (max-width: 1919px) {
+    .landingPage-container .landingPage .rightImageContainer-image .cubeWrapper {
+        left: 27%;
+    }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1400px) {
+    .landingPage-container .landingPage .rightImageContainer-image .cubeWrapper {
+        left: 28%;
+    }
+}
+
+@media screen and (width: 1280px) and (height: 720px) {
+    .landingPage-container .landingPage .rightImageContainer-image .cubeWrapper {
+        left: 17%;
+    }
+}
+
+@media (max-width: 1279px) {
+    .landingPage-container .landingPage .rightImageContainer-image .cubeWrapper {
+        left: 17%;
+    }
+}
+
+.landingPage-container .landingPage .rightImageContainer-image .cubeWrapper .cube {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.landingPage-container .landingPage .rightImageContainer-image .cubeWrapper .cubeText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    /* Set text color */
+    font-size: 24px;
+    /* Set text size */
+    font-weight: 700;
+    /* Set text weight */
+    font-family: "Oswald";
+}
+
+.landingPage-container .landingPage .rightImageContainer-image img {
+    height: 100%;
+    width: 100%;
+    -o-object-fit: contain;
+    object-fit: contain;
+    -o-object-position: bottom right;
+    object-position: bottom right;
+    display: flex;
+}
+
+@media (max-width: 992px) {
+    .landingPage-container .landingPage .rightImageContainer-image img {
+        display: none;
+    }
+}
+
+.landingPage-container .landingPage .MobileScreen-img {
+    display: none;
+    height: 60dvh;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .landingPage-container .landingPage .MobileScreen-img {
+        height: 75vh;
+    }
+}
+
+@media (max-width: 414px) {
+    .landingPage-container .landingPage .MobileScreen-img {
+        height: 75dvh;
+    }
+}
+
+@media (max-width: 321px) {
+    .landingPage-container .landingPage .MobileScreen-img {
+        height: 85dvh;
+    }
+}
+
+.landingPage-container .landingPage .MobileScreen-img img {
+    height: 100%;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+@media (max-width: 992px) {
+    .landingPage-container .landingPage .MobileScreen-img img {
+        -o-object-position: bottom right;
+        object-position: bottom right;
+        -o-object-fit: contain;
+        object-fit: contain;
+        transform: scaleY(0.95);
+    }
+}
+
+@media (max-width: 992px) {
+    .landingPage-container .landingPage .MobileScreen-img {
+        display: block;
+        -o-object-fit: cover;
+        object-fit: cover;
+        width: 100%;
+        z-index: 9;
+        position: absolute;
+        bottom: -3%;
+        left: 0%;
+    }
+}

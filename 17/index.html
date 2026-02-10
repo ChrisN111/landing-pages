@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Mature Dates</title>
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;font-family:'Inter',sans-serif;background:#0a0a12;color:#fff}
+body{background:url('bg6.png') no-repeat center center;background-size:cover;display:flex;align-items:center;justify-content:center;min-height:100vh;overflow-y:auto}
+body::before{content:'';position:fixed;inset:0;background:rgba(10,10,18,.85);z-index:0;pointer-events:none}
+
+.wrap{position:relative;z-index:1;width:100%;max-width:400px;padding:16px;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+
+.step{display:none;width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px 20px;backdrop-filter:blur(10px);animation:fadeUp .3s ease}
+.step.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+.step-title{font-size:20px;font-weight:700;text-align:center;margin-bottom:6px;line-height:1.3}
+.step-sub{font-size:14px;color:rgba(255,255,255,.5);text-align:center;margin-bottom:20px}
+.step-q{font-size:15px;text-align:center;line-height:1.5;margin-bottom:20px;color:rgba(255,255,255,.85)}
+
+.prog{display:flex;gap:4px;margin-bottom:20px}
+.prog-dot{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.1);transition:background .3s}
+.prog-dot.done{background:linear-gradient(90deg,#ff3b6f,#ff8a5c)}
+
+.btns{display:flex;flex-direction:column;gap:10px}
+.btn{padding:14px 20px;border-radius:12px;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#fff;text-align:center;transition:all .15s;text-decoration:none;-webkit-appearance:none;appearance:none}
+.btn:active{transform:scale(.97);background:rgba(255,59,111,.15);border-color:rgba(255,59,111,.3)}
+.btn-row{display:flex;gap:10px}
+.btn-row .btn{flex:1}
+.btn-yes{background:rgba(0,180,80,.15);border-color:rgba(0,180,80,.3)}
+.btn-yes:active{background:rgba(0,180,80,.3)}
+.btn-no{background:rgba(220,40,40,.15);border-color:rgba(220,40,40,.3)}
+.btn-no:active{background:rgba(220,40,40,.3)}
+
+.photo-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:20px}
+.photo-opt{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:all .15s;-webkit-user-select:none;user-select:none}
+.photo-opt img{width:70px;height:70px;border-radius:12px;object-fit:cover;border:3px solid transparent;transition:border .15s;pointer-events:none}
+.photo-opt span{font-size:11px;color:rgba(255,255,255,.6);font-weight:500;text-align:center;pointer-events:none}
+.photo-opt.sel img{border-color:#ff3b6f}
+.photo-opt.sel span{color:#ff3b6f}
+.photo-opt:active{transform:scale(.95)}
+
+.btn-next{padding:14px;border-radius:12px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;border:none;background:linear-gradient(135deg,#ff3b6f,#ff8a5c);color:#fff;width:100%;transition:all .15s;opacity:.3;pointer-events:none;-webkit-appearance:none;appearance:none}
+.btn-next.on{opacity:1;pointer-events:auto}
+.btn-next:active{transform:scale(.97)}
+
+.cta{display:block;width:100%;padding:18px;border-radius:14px;border:none;background:linear-gradient(135deg,#ff3b6f,#ff8a5c);color:#fff;font-size:17px;font-weight:800;font-family:inherit;cursor:pointer;text-align:center;text-decoration:none;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 4px 24px rgba(255,59,111,.3)}50%{box-shadow:0 4px 36px rgba(255,59,111,.6)}}
+
+.loader{display:none;flex-direction:column;align-items:center;gap:16px}
+.loader.active{display:flex}
+.spinner{width:50px;height:50px;border:3px solid rgba(255,255,255,.1);border-top-color:#ff3b6f;border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader-txt{font-size:14px;color:rgba(255,255,255,.6)}
+
+.city{color:#ff3b6f;font-weight:700}
+
+.online{position:fixed;top:0;left:0;right:0;z-index:10;background:rgba(0,200,83,.08);padding:6px;text-align:center;font-size:12px;color:rgba(255,255,255,.6);pointer-events:none}
+.online b{color:#00c853}
+.online-dot{display:inline-block;width:7px;height:7px;background:#00c853;border-radius:50%;margin-right:6px;animation:blink 2s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+
+.toast{position:fixed;bottom:-60px;left:16px;right:16px;max-width:400px;margin:0 auto;z-index:90;background:rgba(30,30,35,.95);backdrop-filter:blur(12px);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;font-size:12px;color:rgba(255,255,255,.7);transition:bottom .4s cubic-bezier(.4,0,.2,1);border:1px solid rgba(255,255,255,.06);pointer-events:none}
+.toast.show{bottom:20px;pointer-events:auto}
+.toast-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+
+@media(max-width:360px){
+  .photo-opt img{width:58px;height:58px}
+  .step{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+
+<div class="online"><span class="online-dot"></span><b id="oc">--</b> Frauen online in der Nähe von <b id="city-top">dir</b></div>
+
+<div class="wrap">
+  <div class="step active" id="s0">
+    <div class="step-title">⚠️ Wichtig!</div>
+    <div class="step-q">Bevor wir dir Frauen in <span class="city" id="city0">deiner Gegend</span> zeigen, die heute Nacht ficken wollen, müssen wir dir ein paar kurze Fragen stellen.</div>
+    <div class="btns"><button class="btn" type="button" onclick="next()">Weiter</button></div>
+  </div>
+
+  <div class="step" id="s1">
+    <div class="prog"><div class="prog-dot done"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div>
+    <div class="step-q">Diese Frauen könnten jemand sein, den du kennst — eine Nachbarin, Kollegin oder Freundin. Stimmst du zu, ihre Identität geheim zu halten?</div>
+    <div class="btn-row"><button class="btn btn-yes" type="button" onclick="next()">JA</button><button class="btn btn-no" type="button" onclick="next()">NEIN</button></div>
+  </div>
+
+  <div class="step" id="s2">
+    <div class="prog"><div class="prog-dot done"></div><div class="prog-dot done"></div><div class="prog-dot"></div><div class="prog-dot"></div></div>
+    <div class="step-q">Die Frauen hier suchen keine Beziehung — nur lockeren Sex. Bist du damit einverstanden?</div>
+    <div class="btn-row"><button class="btn btn-yes" type="button" onclick="next()">JA</button><button class="btn btn-no" type="button" onclick="next()">NEIN</button></div>
+  </div>
+
+  <div class="step" id="s3">
+    <div class="prog"><div class="prog-dot done"></div><div class="prog-dot done"></div><div class="prog-dot done"></div><div class="prog-dot"></div></div>
+    <div class="step-q">Stimmst du zu, sicheren Sex mit den Frauen zu haben, die du hier triffst?</div>
+    <div class="btn-row"><button class="btn btn-yes" type="button" onclick="next()">JA</button><button class="btn btn-no" type="button" onclick="next()">NEIN</button></div>
+  </div>
+
+  <div class="step" id="s4">
+    <div class="prog"><div class="prog-dot done"></div><div class="prog-dot done"></div><div class="prog-dot done"></div><div class="prog-dot done"></div></div>
+    <div class="step-q">Bist du 24 oder älter? Frauen auf dieser Seite bevorzugen erfahrene Männer.</div>
+    <div class="btn-row"><button class="btn btn-yes" type="button" onclick="next()">JA</button><button class="btn btn-no" type="button" onclick="next()">NEIN</button></div>
+  </div>
+
+  <div class="step" id="s5">
+    <div class="step-title">Welcher Körpertyp macht dich an?</div>
+    <div class="step-sub">Tippe auf eine oder mehrere</div>
+    <div class="photo-grid" id="grid-body">
+      <div class="photo-opt" onclick="toggle(this)"><img src="body1_o.jpg"><span>Schlank</span></div>
+      <div class="photo-opt" onclick="toggle(this)"><img src="body2_o.jpg"><span>Normal</span></div>
+      <div class="photo-opt" onclick="toggle(this)"><img src="body3_o.jpg"><span>Kurvig</span></div>
+      <div class="photo-opt" onclick="toggle(this)"><img src="body4_o.jpg"><span>Große Brüste</span></div>
+      <div class="photo-opt" onclick="toggle(this)"><img src="body5_o.jpg"><span>Großer Hintern</span></div>
+    </div>
+    <button class="btn-next" id="bn5" type="button" onclick="next()">WEITER</button>
+  </div>
+
+  <div class="step" id="s6">
+    <div class="step-title">Wie alt sollen deine Frauen sein?</div>
+    <div class="step-sub">Tippe auf eine oder mehrere</div>
+    <div class="photo-grid" id="grid-age">
+      <div class="photo-opt" onclick="toggle(this)"><img src="25.jpg"><span>20-30</span></div>
+      <div class="photo-opt" onclick="toggle(this)"><img src="35_2.jpg"><span>30-40</span></div>
+      <div class="photo-opt" onclick="toggle(this)"><img src="45.jpg"><span>40-50</span></div>
+      <div class="photo-opt" onclick="toggle(this)"><img src="55_2.jpg"><span>50-60</span></div>
+    </div>
+    <button class="btn-next" id="bn6" type="button" onclick="next()">WEITER</button>
+  </div>
+
+  <div class="step" id="s7">
+    <div class="step-title">Lieblings-Sexstellung?</div>
+    <div class="step-sub">Tippe auf eine oder mehrere</div>
+    <div class="photo-grid" id="grid-pos">
+      <div class="photo-opt" onclick="toggle(this)"><img src="missionario.jpg"><span>Missionarsstellung</span></div>
+      <div class="photo-opt" onclick="toggle(this)"><img src="pecorina.jpg"><span>Doggy Style</span></div>
+      <div class="photo-opt" onclick="toggle(this)"><img src="anale.jpg"><span>Anal</span></div>
+      <div class="photo-opt" onclick="toggle(this)"><img src="sopra.jpg"><span>Reiterin</span></div>
+      <div class="photo-opt" onclick="toggle(this)"><img src="pompino.jpg"><span>Blowjob</span></div>
+    </div>
+    <button class="btn-next" id="bn7" type="button" onclick="next()">WEITER</button>
+  </div>
+
+  <div class="step" id="s8">
+    <div class="step-title">Was suchst du?</div>
+    <div class="step-sub">Tippe auf eine oder mehrere</div>
+    <div class="photo-grid" id="grid-rel">
+      <div class="photo-opt" onclick="toggle(this)"><img src="body1_o.jpg"><span>Online</span></div>
+      <div class="photo-opt" onclick="toggle(this)"><img src="body2_o-1.jpg"><span>One Night</span></div>
+      <div class="photo-opt" onclick="toggle(this)"><img src="body3_o-1.jpg"><span>Lockerer Sex</span></div>
+      <div class="photo-opt" onclick="toggle(this)"><img src="body4_o.jpg"><span>Ernstes</span></div>
+      <div class="photo-opt" onclick="toggle(this)"><img src="body5_o.jpg"><span>Heirat</span></div>
+    </div>
+    <button class="btn-next" id="bn8" type="button" onclick="next()">WEITER</button>
+  </div>
+
+  <div class="loader" id="loader">
+    <div class="spinner"></div>
+    <div class="loader-txt" id="loader-txt">Geile Frauen in deiner Nähe werden gesucht...</div>
+  </div>
+
+  <div class="step" id="s9">
+    <div class="step-title">✅ Du bist drin!</div>
+    <div class="step-q"><span id="match-count">14</span> Frauen in der Nähe von <span class="city" id="city9">deiner Gegend</span> passen zu deinen Vorlieben. Klicke unten um sie zu sehen — denke daran, halte ihre Identität geheim.</div>
+    <a class="cta" id="cta-link" href="{url}">Frauen in deiner Nähe ansehen →</a>
+  </div>
+</div>
+
+<div class="toast" id="toast"><div class="toast-av">👤</div><span id="toast-txt"></span></div>
+
+<script src="main_script.js?v=5"></script>
+</body>
+</html>
